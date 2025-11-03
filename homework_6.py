@@ -96,7 +96,7 @@ plt.close()
 
 mean_rmse = []
 
-"""
+
 for d in [10, 15, 20, 25]:
     scores = []
     for n in range(10, 201, 10):
@@ -111,7 +111,7 @@ df_scores = pd.DataFrame(mean_rmse, columns=['max_depth', 'mean_rmse'])
 plt.plot(df_scores.max_depth, df_scores.mean_rmse)
 plt.savefig("random_forest_max_depth.png")
 plt.close()
-"""
+
 ## Feature importance
 
 dv, model = train_random_forest(df_train, y_train, n_estimators=10, max_depth=20)
