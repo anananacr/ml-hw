@@ -75,7 +75,7 @@ dv, model = train_decision_tree(df_train, y_train, max_depth=1)
 
 print(export_text(model, feature_names=list(dv.get_feature_names_out())))
 
-dv, model = train_random_forest(df_train, y_train, n_estimators=10, max_depth=1)
+dv, model = train_random_forest(df_train, y_train, n_estimators=10, max_depth=None)
 
 y_pred = predict(df_val, dv, model)
 score = rmse(y_val, y_pred)
@@ -84,7 +84,7 @@ print(score)
 
 scores=[]
 for n in range(10, 201, 10):
-    dv, model = train_random_forest(df_train, y_train, n_estimators=n, max_depth=1)
+    dv, model = train_random_forest(df_train, y_train, n_estimators=n, max_depth=None)
     y_pred = predict(df_val, dv, model)
     score = rmse(y_val, y_pred)
     scores.append((n,round(score,3)))
@@ -96,6 +96,7 @@ plt.close()
 
 mean_rmse = []
 
+"""
 for d in [10, 15, 20, 25]:
     scores = []
     for n in range(10, 201, 10):
@@ -110,6 +111,7 @@ df_scores = pd.DataFrame(mean_rmse, columns=['max_depth', 'mean_rmse'])
 plt.plot(df_scores.max_depth, df_scores.mean_rmse)
 plt.savefig("random_forest_max_depth.png")
 plt.close()
+"""
 ## Feature importance
 
 dv, model = train_random_forest(df_train, y_train, n_estimators=10, max_depth=20)
